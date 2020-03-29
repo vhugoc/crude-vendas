@@ -15,6 +15,7 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id')->nullable(false);
             $table->string('description')->nullable(false);
             $table->string('source')->nullable(false);
             $table->float('value', 8, 2)->nullable(false);
