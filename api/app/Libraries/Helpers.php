@@ -96,19 +96,6 @@ class Helpers {
   }
 
   /**
-   * Email validation
-   * @param string $_email
-   * @return string
-   */
-  public static function validateEmail($_email) :string {
-    try {
-      return filter_var($_email, FILTER_VALIDATE_EMAIL) ? true : false;
-    } catch (Exception $err) {
-      return $err->getMessage();
-    }
-  }
-
-  /**
    * Adjust days/months to any date
    * @param string $_date
    * @param string $_to String to replace. Example: +3 days
