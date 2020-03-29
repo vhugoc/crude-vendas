@@ -11,6 +11,13 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->group(['prefix' => 'api'], function () use ($router) {
+
+    /**
+     * User Routing
+     * 
+     */
+    $router->post('/register', 'UserController@register');
+    $router->post('/signin', 'UserController@signin');
+    $router->get('/profile', ['middleware' => App\Http\Middleware\AuthorizationMiddleware::class, 'uses' => 'UserController@show']);
 });
