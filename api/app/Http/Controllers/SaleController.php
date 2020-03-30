@@ -18,7 +18,7 @@ class SaleController extends Controller {
    */
   public function index(Request $request) {
     try {
-      return response()->json(Sale::where('user_id', '=', $request->token->id)->get());
+      return response()->json(Sale::where('user_id', '=', $request->token->id)->orderBy('date', 'DESC')->get());
     } catch (Exception $err) {
       return $err;
     }
@@ -62,14 +62,14 @@ class SaleController extends Controller {
         'date'        => ['required', 'date']
       ]);
 
-      if (!Helpers::validateDate($request->date, 'Y-m-d')) {
+      if (!Helpers::validateDate($request->date, 'Y/m/d')) {
         return response()->json([
           "success"   => false,
           "message"   => "invalid date format"
         ]);
       }
 
-      if ($request->date > Helpers::generateDate('Y-m-d')) {
+      if ($request->date > Helpers::generateDate('Y/m/d')) {
         return response()->json([
           "success"   => false,
           "message"   => "Date cannot be greater than today"
@@ -124,14 +124,14 @@ class SaleController extends Controller {
         'date'        => ['required', 'date']
       ]);
 
-      if (!Helpers::validateDate($request->date, 'Y-m-d')) {
+      if (!Helpers::validateDate($request->date, 'Y/m/d')) {
         return response()->json([
           "success"   => false,
           "message"   => "invalid date format"
         ]);
       }
 
-      if ($request->date > Helpers::generateDate('Y-m-d')) {
+      if ($request->date > Helpers::generateDate('Y/m/d')) {
         return response()->json([
           "success"   => false,
           "message"   => "Date cannot be greater than today"
