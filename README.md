@@ -2,6 +2,8 @@
 
 > Relatório de vendas feito em PHP utilizando o framework Lumen.
 
+![](https://i.ibb.co/CvJbGc3/dashboard.png)
+
 ## Visão Geral
 O usuário fará a autenticação com login e senha, e em caso de sucesso, o retorno será um token emitido pelo `JWT`. Caso o usuário não possua uma conta, basta clicar no botão de registro dentro do formulário de autenticação.
 
