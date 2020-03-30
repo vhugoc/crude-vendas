@@ -18,7 +18,17 @@ class SaleController extends Controller {
    */
   public function index(Request $request) {
     try {
-      return response()->json(Sale::where('user_id', '=', $request->token->id)->orderBy('date', 'DESC')->get());
+      if (!isset($request->days)) {
+        return response()->json(Sale::where('user_id', '=', $request->token->id)->orderBy('date', 'DESC')->get());
+      } else {
+        $start_date = Helpers::adjustDate(Helpers::generateDate("Y-m-d"), "-$request->days days");
+        return response()->json(
+          Sale::where('user_id', '=', $request->token->id)
+          ->whereDate('date', '>=', $start_date)
+          ->orderBy('date', 'DESC')
+          ->get()
+        );
+      }
     } catch (Exception $err) {
       return $err;
     }
